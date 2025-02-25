@@ -51,10 +51,10 @@ To use BeanoGuard, follow these simple steps:
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/your-username/beanoGuard.git
-2. ****:
+2. **Navigate to the Project Directory**:
    ```bash
    cd beanoGuard
-3. ****:
+3. **Open the Application**:
    - Open the index.html file in your favorite browser.
    - No additional setup or installation is required.
 
@@ -79,7 +79,7 @@ To use BeanoGuard, follow these simple steps:
 
 We welcome contributions from the community! If you'd like to improve BeanoGuard, feel free to submit issues or pull requests. Here's how you can contribute:
 
-1. ****:
+1. **Fork the Repository**:
    - Click the "Fork" button on the top-right corner of the repository page.
 2. **Clone Your Fork**:
    ```bash
