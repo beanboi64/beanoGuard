@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanoGuard</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/enhanced-styles.css">
+</head>
+<body>
+    <div class="background-container">
+        <div class="valley-text"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>BeanoGuard</h1>
+            <p class="tagline">Secure Password Generator</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="generator">Generator</button>
+            <button class="tab-btn" data-tab="saved">Saved Passwords</button>
+            <button class="tab-btn" data-tab="settings">Settings</button>
+        </div>
+        
+        <div class="tab-content" id="generator-tab" style="display: block;">
+            <div class="card">
+                <h2>Generate Password</h2>
+                
+                <div class="password-options">
+                    <div class="option-group">
+                        <label for="password-length">Password Length:</label>
+                        <div class="range-container">
+                            <input type="range" id="password-range" min="8" max="32" value="12">
+                            <input type="number" id="password-length" min="8" max="32" value="12">
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Password Type:</label>
+                        <div class="select-wrapper disabled">
+                            <select id="password-type" disabled>
+                                <option value="all">All Characters</option>
+                                <option value="alphanum">Letters & Numbers</option>
+                                <option value="alpha">Letters Only</option>
+                                <option value="num">Numbers Only</option>
+                            </select>
+                            <div class="disabled-badge">DISABLED</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="generated-password">
+                    <input type="text" id="password-input" readonly placeholder="Your secure password">
+                    <button id="copy-btn" title="Copy to clipboard"><i class="icon-copy">📋</i></button>
+                </div>
+                
+                <div class="password-strength">
+                    <div class="strength-label">Strength: <span id="strength-text">Strong</span></div>
+                    <div class="strength-meter">
+                        <div class="meter-bar" id="strength-meter"></div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="generate-btn" class="primary-btn">Generate Password</button>
+                    <button id="save-btn" class="secondary-btn">Save Password</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="saved-tab">
+            <div class="card">
+                <div class="search-container disabled">
+                    <input type="text" id="search-passwords" placeholder="Search saved passwords..." disabled>
+                    <div class="disabled-badge">DISABLED</div>
+                </div>
+                
+                <div class="saved-passwords">
+                    <h2>Saved Passwords</h2>
+                    <ul id="password-list"></ul>
+                    <div class="empty-state" id="empty-passwords">
+                        <p>No saved passwords yet</p>
+                        <button class="primary-btn" id="generate-from-empty">Generate Your First Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="settings-tab">
+            <div class="card">
+                <h2>Advanced Settings</h2>
+                
+                <div class="settings-group disabled">
+                    <h3>Character Sets</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" disabled checked>
+                            <span>Include Uppercase Letters (A-Z)</span>
+                        </label>
+                        <div class="disabled-badge">DISABLED</div>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" disabled checked>
+                            <span>Include Lowercase Letters (a-z)</span>
+                        </label>
+                        <div class="disabled-badge">DISABLED</div>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" disabled checked>
+                            <span>Include Numbers (0-9)</span>
+                        </label>
+                        <div class="disabled-badge">DISABLED</div>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" disabled checked>
+                            <span>Include Special Characters (!@#$%)</span>
+                        </label>
+                        <div class="disabled-badge">DISABLED</div>
+                    </div>
+                </div>
+                
+                <div class="settings-group disabled">
+                    <h3>Password Names</h3>
+                    <label class="toggle-label">
+                        <span>Enable Password Names</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" disabled>
+                            <span class="toggle-slider"></span>
+                        </div>
+                        <div class="disabled-badge">DISABLED</div>
+                    </label>
+                    <p class="setting-description">Add custom names to your saved passwords</p>
+                </div>
+                
+                <div class="settings-group disabled">
+                    <h3>Date & Time Stamps</h3>
+                    <label class="toggle-label">
+                        <span>Show Date & Time</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" disabled>
+                            <span class="toggle-slider"></span>
+                        </div>
+                        <div class="disabled-badge">DISABLED</div>
+                    </label>
+                    <p class="setting-description">Add timestamps to your saved passwords</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="save-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Save Password</h3>
+                <div class="form-group disabled">
+                    <label for="password-name">Password Name:</label>
+                    <input type="text" id="password-name" placeholder="e.g., Twitter Account" disabled>
+                    <div class="disabled-badge">DISABLED</div>
+                </div>
+                <div class="modal-buttons">
+                    <button id="cancel-save" class="secondary-btn">Cancel</button>
+                    <button id="confirm-save" class="primary-btn">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Made with ❤️ by The Valley</p>
+            <p class="version">v1.0</p>
+        </div>
+    </div>
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/unavailable.js"></script>
+</body>
+</html>
